@@ -1,0 +1,174 @@
+<div class="main-products phone-only">
+
+
+  <div class="newin " *ngIf="newInproducts && newInproducts.length">
+    <img src="assets/images/newin.png"  alt="">
+  
+  </div>
+  
+  
+  <div class="picked" *ngIf="newInproducts && newInproducts.length">
+
+
+    <div class="products">
+      <div class="product" *ngFor="let product of newInproducts  | searchproductshome:searchString; let i = index">
+        <div class="image">
+          <img [src]="product.FeaturedImageUrl" alt="Awesome Sunglasses" (click)="viewMore(product)">
+        </div>
+
+        <div class="product-details">
+          <span class="stock-check" *ngIf="product.TotalStock==0">Sold out</span>
+          <p>
+            {{product.Name}}
+
+            <span class="price" *ngIf="!product.SalePrice">
+              {{product.RegularPrice | currency:'R'}}
+            </span>
+            <span class="price" *ngIf="product.SalePrice">
+              <del> {{product.RegularPrice | currency:'R'}}</del> <br>
+              {{product.SalePrice | currency:'R'}}
+              <i class="bedge" *ngIf="promotion && promotion.Name">{{promotion.Name}}</i>
+              <i class="bedge" *ngIf="promotion && !promotion.Name">{{promotion.DiscountValue}} {{promotion.DiscountUnits}}</i>
+            </span>
+          </p>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+
+  <div class="newin" *ngIf="topLadiesproducts && topLadiesproducts.length">
+    <img src="assets/images/topladies.png"  alt="">
+  
+  </div>
+  
+
+
+  <div class="picked" *ngIf="topLadiesproducts && topLadiesproducts.length">
+
+
+    <div class="products">
+      <div class="product" *ngFor="let product of topLadiesproducts  | searchproductshome:searchString; let i = index">
+        <div class="image">
+          <img [src]="product.FeaturedImageUrl" alt="Awesome Sunglasses" (click)="viewMore(product)">
+        </div>
+
+        <div class="product-details">
+          <span class="stock-check" *ngIf="product.TotalStock==0">Sold out</span>
+
+          <p>
+            {{product.Name}}
+
+            <span class="price" *ngIf="!product.SalePrice">
+              {{product.RegularPrice | currency:'R'}}
+            </span>
+            <span class="price" *ngIf="product.SalePrice">
+              <del> {{product.RegularPrice | currency:'R'}}</del> <br>
+              {{product.SalePrice | currency:'R'}}
+              <i class="bedge" *ngIf="promotion && promotion.Name">{{promotion.Name}}</i>
+              <i class="bedge" *ngIf="promotion && !promotion.Name">{{promotion.DiscountValue}} {{promotion.DiscountUnits}}</i>
+            </span>
+          </p>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+
+  <div class="newin" *ngIf="topMenproducts && topMenproducts.length">
+    <img src="assets/images/topmen.png"  alt="">
+  
+  </div>
+
+  <div class="picked" *ngIf="topMenproducts && topMenproducts.length">
+
+
+    <div class="products">
+      <div class="product" *ngFor="let product of topMenproducts  | searchproductshome:searchString; let i = index">
+        <div class="image">
+          <img [src]="product.FeaturedImageUrl" alt="Awesome Sunglasses" (click)="viewMore(product)">
+        </div>
+
+        <div class="product-details">
+          <span class="stock-check" *ngIf="product.TotalStock==0">Sold out</span>
+          <p>
+            {{product.Name}} 
+
+            <span class="price" *ngIf="!product.SalePrice">
+              {{product.RegularPrice | currency:'R'}}
+            </span>
+            <span class="price" *ngIf="product.SalePrice">
+              <del> {{product.RegularPrice | currency:'R'}}</del> <br>
+              {{product.SalePrice | currency:'R'}}
+              <i class="bedge" *ngIf="promotion && promotion.Name">{{promotion.Name}}</i>
+              <i class="bedge" *ngIf="promotion && !promotion.Name">{{promotion.DiscountValue}} {{promotion.DiscountUnits}}</i>
+            </span>
+          </p>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+
+
+  
+
+
+</div>
+
+
+<div class="main-products pc-only">
+
+
+
+    
+  <div class="picked" *ngIf="newInproducts && newInproducts.length">
+
+
+    <div class="products">
+      <div class="product" *ngFor="let product of newInproducts  | searchproductshome:searchString; let i = index">
+        <div class="image">
+          <img [src]="product.FeaturedImageUrl" alt="Awesome Sunglasses" (click)="viewMore(product)">
+        </div>
+
+        <div class="product-details">
+          <span class="stock-check" *ngIf="product.TotalStock==0">Sold out</span>
+
+          <p>
+            {{product.Name}}
+
+            <span class="price" *ngIf="!product.SalePrice">
+              {{product.RegularPrice | currency:'R'}}
+            </span>
+            <span class="price" *ngIf="product.SalePrice">
+              <del> {{product.RegularPrice | currency:'R'}}</del> <br>
+              {{product.SalePrice | currency:'R'}}
+              <i class="bedge" *ngIf="promotion && promotion.Name">{{promotion.Name}}</i>
+              <i class="bedge" *ngIf="promotion && !promotion.Name">{{promotion.DiscountValue}} {{promotion.DiscountUnits}}</i>
+            </span>
+          </p>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="gender">
+    <div class="col" (click)="selectCategory('ladies')">
+      <img src="assets/images/forher.png" alt="">
+    </div>
+    <div class="col" (click)="selectCategory('men')">
+      <img src="assets/images/forhim.png" alt="">
+    </div>
+  </div>
+
+
+
+  
+</div>
