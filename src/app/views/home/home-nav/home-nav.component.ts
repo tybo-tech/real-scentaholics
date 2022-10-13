@@ -8,7 +8,7 @@ import { CompanyService } from 'src/services/company.service';
 import { HomeShopService } from 'src/services/home-shop.service';
 import { NavigationService } from 'src/services/navigation.service';
 import { UxService } from 'src/services/ux.service';
-import { COMPANY_TYPE, ORDER_TYPE_SALES } from 'src/shared/constants';
+import { COMPANY, COMPANY_TYPE, ORDER_TYPE_SALES } from 'src/shared/constants';
 
 @Component({
   selector: 'app-home-nav',
@@ -21,11 +21,13 @@ export class HomeNavComponent implements OnInit {
   showMenu: boolean;
   order: Order;
   user: User;
+  notes: any;
   constructor(
     private uxService: UxService,
     private router: Router,
     private orderService: OrderService,
     private accountService: AccountService,
+    private companyService: CompanyService,
 
   ) {
 
@@ -63,9 +65,15 @@ export class HomeNavComponent implements OnInit {
       this.orderService.updateOrderState(this.order);
     }
     this.carttItems = this.order.Orderproducts && this.order.Orderproducts.length || 0;
-
+    this.loadNotice();
   }
-
+  loadNotice() {
+    this.companyService.getCompanyById(COMPANY).subscribe(data => {
+      if (data && data.CompanyId && data.Description) {
+        this.notes = data.Description;
+      }
+    })
+  }
   cart() {
     this.router.navigate(['shop/cart']);
   }

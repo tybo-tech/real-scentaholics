@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { Order, Product, User } from 'src/models';
 import { ProductService, AccountService, CompanyCategoryService, OrderService } from 'src/services';
+import { CompanyService } from 'src/services/company.service';
 import { UxService } from 'src/services/ux.service';
 import { ADMIN, SUPER } from 'src/shared/constants';
 
@@ -15,10 +16,10 @@ export class Overviewv2Component implements OnInit {
   products: Product[];
   allProducts: Product[];
   user: User;
-  showAdd:boolean;
+  showAdd: boolean;
   companyLink = '';
-  ADMIN= ADMIN;
-  SUPER=SUPER;
+  ADMIN = ADMIN;
+  SUPER = SUPER;
   showMenu: boolean;
 
   constructor(
@@ -27,11 +28,12 @@ export class Overviewv2Component implements OnInit {
     private companyCategoryService: CompanyCategoryService,
     private router: Router,
     private uxService: UxService,
-    ) { }
+    private companyService: CompanyService,
+  ) { }
 
   ngOnInit() {
     this.user = this.accountService.currentUserValue;
-    if(!this.user || !this.user.Company){
+    if (!this.user || !this.user.Company) {
       this.router.navigate(['sign-in'])
     }
     this.companyLink = `${environment.BASE_URL}/${this.user.Company.Slug || this.user.Company.CompanyId}`
@@ -62,7 +64,7 @@ export class Overviewv2Component implements OnInit {
     this.productService.updateProductState(product);
     this.router.navigate(['admin/dashboard/product', product.ProductSlug || product.ProductId]);
   }
-  gotoShop(){
+  gotoShop() {
     this.router.navigate(['']);
   }
 
@@ -81,5 +83,15 @@ export class Overviewv2Component implements OnInit {
     } else {
       this.uxService.updateMessagePopState('Shop LinkCopied to clipboard.');
     }
+  }
+
+  saveCompany() {
+    this.companyService.update(this.user.Company).subscribe(data => {
+      if (data && data.CompanyId) {
+        this.user.Company = data;
+        this.accountService.updateUserState(this.user);
+        this.uxService.updateMessagePopState('The company  updated.');
+      }
+    })
   }
 }

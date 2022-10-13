@@ -40,42 +40,57 @@
     </div>
   </div>
 
+  <div class="notes" *ngIf="notes"><p><marquee behavior="" direction="">{{notes}}</marquee></p></div>
+
 </div>
 
 <div class="pc-only">
   <div class="pc-menu">
-    <div class="col">
-      <a routerLink="/">
-        <img src="assets/images/logo.png" alt="">
-      </a>
+    <div class="notes" *ngIf="notes">
+      <p>
+      <marquee behavior="" direction="">  {{notes}}</marquee>
+      </p>
+    </div>
+    <div class="menu-container">
+      <div class="col">
+        <a routerLink="/">
+          <img src="assets/images/logo.png" alt="">
+        </a>
+      </div>
+  
+      <div class="col">
+        <ul class="menu">
+          <li>
+            <a routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}" class="a-btn"
+              routerLink="/">Home</a>
+          </li>
+          <li>
+            <a routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}" class="a-btn"
+              routerLink="/about">About us</a>
+          </li>
+          <li>
+            <a routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}" class="a-btn"
+              routerLink="/contact">Contact us</a>
+          </li>
+          <li>
+            <a routerLinkActive="active-link" *ngIf="user" [routerLinkActiveOptions]="{exact: true}" class="a-btn"
+              routerLink="/home/profile">Hi {{user.Name}}</a>
+            <a routerLinkActive="active-link" *ngIf="!user" [routerLinkActiveOptions]="{exact: true}" class="a-btn"
+              routerLink="/sign-in">Login / Sign up</a>
+          </li>
+          <li>
+            <a routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}" class="a-btn"
+              routerLink="/shop/cart">Cart({{carttItems}})</a>
+          </li>
+        </ul>
+      </div>
     </div>
 
-    <div class="col">
-      <ul class="menu">
-        <li>
-          <a routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}" class="a-btn"
-            routerLink="/">Home</a>
-        </li>
-        <li>
-          <a routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}" class="a-btn"
-            routerLink="/about">About us</a>
-        </li>
-        <li>
-          <a routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}" class="a-btn"
-            routerLink="/contact">Contact us</a>
-        </li>
-        <li>
-          <a routerLinkActive="active-link" *ngIf="user" [routerLinkActiveOptions]="{exact: true}" class="a-btn"
-            routerLink="/home/profile">Hi {{user.Name}}</a>
-          <a routerLinkActive="active-link" *ngIf="!user" [routerLinkActiveOptions]="{exact: true}" class="a-btn"
-            routerLink="/sign-in">Login / Sign up</a>
-        </li>
-        <li>
-          <a routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}" class="a-btn"
-            routerLink="/shop/cart">Cart({{carttItems}})</a>
-        </li>
-      </ul>
-    </div>
+    
+
   </div>
+ 
 
 </div>
+
+

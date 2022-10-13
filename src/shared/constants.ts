@@ -1,4 +1,5 @@
 export const COMPANY_EMIAL = 'info@scenta-holics.com';
+export const COMPANY= 'scenta-holics.com';
 export const CUSTOMER = 'Customer';
 export const IMAGE_CROP_SIZE = 1500;
 export const ADMIN = 'Admin';
